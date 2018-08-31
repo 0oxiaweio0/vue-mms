@@ -118,7 +118,7 @@ export default {
         params['password'] = this.loginForm.password
         this.$store.dispatch('LoginByUser', params).then(() => {
           this.$store.dispatch('GetUserInfo', params).then(() => {
-            this.$router.push({ path: '/' })
+            this.$router.push({ path: '/dashboard' })
           }).catch(function (err) {
             console.log(err)
           })
