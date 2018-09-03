@@ -12,7 +12,7 @@
     <div  class="fgl_info_warp" style="-webkit-app-region: drag;">
       <div class="fgl_register_system" >
         <i class="iconfont fgl_logo_register">&#xe612;</i
-        ><span class="fgl_system_title">孕婴智慧医疗平台</span></div>
+        ><span class="fgl_system_title">孕产婴智慧医疗平台</span></div>
     </div>
     <!--系统号和版本 end-->
     <div class="fgl_register_main">
@@ -109,9 +109,17 @@ export default {
       let params = {}
       if (type === 'loginByAccount' && this.loginType === 2) {
         if (!this.loginForm.account) {
+          this.$message({
+            message: '用户账户不能为空',
+            type: 'error'
+          })
           return false
         }
         if (!this.loginForm.password) {
+          this.$message({
+            message: '用户密码不能为空',
+            type: 'error'
+          })
           return false
         }
         params['account'] = this.loginForm.account
@@ -120,9 +128,16 @@ export default {
           this.$store.dispatch('GetUserInfo', params).then(() => {
             this.$router.push({ path: '/dashboard' })
           }).catch(function (err) {
-            console.log(err)
+            this.$message({
+              message: err.message,
+              type: 'error'
+            })
           })
-        }).catch(() => {
+        }).catch((err) => {
+          this.$message({
+            message: err.message,
+            type: 'error'
+          })
         })
         params = null
       }
