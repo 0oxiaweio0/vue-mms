@@ -29,6 +29,7 @@
 <script>
 import { formatDate } from '@/utils/commonfn'
 import { getRemoteCurrentDate, logout } from '@/api/common'
+import { removeToken } from '@/utils/auth'
 export default {
   data () {
     return {
@@ -51,6 +52,7 @@ export default {
     logoutFn () {
       logout().then(response => {
         if (response.data.errorcode === 0) {
+          removeToken()
           this.$message({
             message: '退出成功',
             type: 'success'

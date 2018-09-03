@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
 // Token相关函数
-const TokenKey = 'Admin-Token'
+const TokenKey = 'userToken'
 
 export function getToken () {
   return Cookies.get(TokenKey)
