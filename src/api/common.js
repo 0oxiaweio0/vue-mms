@@ -24,3 +24,10 @@ export function getGravidaDetail (param) {
     params: param
   })
 }
+
+export function logout () {
+  return request({
+    url: '/logout',
+    method: 'GET'
+  })
+}

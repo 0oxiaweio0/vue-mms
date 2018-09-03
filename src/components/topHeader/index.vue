@@ -17,10 +17,10 @@
         <span class="fgl_avatar_imgbox">
                     <img src="../../assets/hospital_web/avatar.png" alt=""/>
                 </span>
-        <div :click="popWindow()" :title="user.organization.name" class="fgl_headerRightName" style="cursor: pointer">{{user.name}}</div>
-        <div :click="popWindow()" class="arrow-bottom2 arrow-bottom-position"></div>
+        <div @click="popWindow()" :title="user.organization.name" class="fgl_headerRightName" style="cursor: pointer">{{user.name}}</div>
+        <div @click="popWindow()" class="arrow-bottom2 arrow-bottom-position"></div>
         <div class="fgl_headerLine2"></div>
-        <div class="fgl_headerRightExit" :click="logout()"  style="cursor: pointer">注销</div>
+        <div class="fgl_headerRightExit" @click="logoutFn()"  style="cursor: pointer">注销</div>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
 <script>
 import { formatDate } from '@/utils/commonfn'
-import { getRemoteCurrentDate } from '@/api/common'
+import { getRemoteCurrentDate, logout } from '@/api/common'
 export default {
   data () {
     return {
@@ -48,7 +48,26 @@ export default {
     },
     popWindow () {
     },
-    logout () {
+    logoutFn () {
+      logout().then(response => {
+        if (response.data.errorcode === 0) {
+          this.$message({
+            message: '退出成功',
+            type: 'success'
+          })
+          this.$router.push({ path: '/login' })
+        } else {
+          this.$message({
+            message: response.data.errormsg,
+            type: 'error'
+          })
+        }
+      }).catch(error => {
+        this.$message({
+          message: error.message,
+          type: 'error'
+        })
+      })
     }
   },
   created () {

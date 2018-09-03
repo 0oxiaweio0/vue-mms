@@ -50,9 +50,6 @@ router.beforeEach((to, from, next) => {
           store.dispatch('SetModalRouters', modalRuters)
         }
       }
-      console.log(store.state.user)
-      console.log(store.getters.user)
-      console.log(store.getters.roles)
       if (!store.getters.roles || store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('GetUserInfo').then(res => { // 拉取user_info
         }).catch((err) => {
