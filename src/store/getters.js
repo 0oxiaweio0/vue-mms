@@ -4,6 +4,8 @@ const getters = { // 方便store中集中处理
   userOrg: state => state.user.userOrg,
   roles: state => state.user.roles,
   permissions: state => state.user.permissions,
-  watermark: state => state.user.watermark
+  watermark: state => state.user.watermark,
+  modalRouters: state => state.permission.modalRouters,
+  modalType: state => state.permission.modalType
 }
 export default getters

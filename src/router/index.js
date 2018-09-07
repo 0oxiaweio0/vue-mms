@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import maternityClinicRouterMap from './modules/maternityClinic'
 
 Vue.use(Router)
 
@@ -17,4 +18,4 @@ export default new Router({
 
 export const asyncRouterMap = [
   { path: '*', redirect: '/404', hidden: true }
-].concat()
+].concat(maternityClinicRouterMap)

@@ -1,12 +1,11 @@
 <template>
   <div class="bodywrapper">
- <!--   <div ng-include="'/app/tpls/blocks/topHeader.html'"></div>-->
     <top-header></top-header>
     <div class="contentwrapper bgimg" style="height: 100%">
       <div class="dashboard_content " style="height: 100%">
         <div class="navmodule clearfix ">
           <div  v-for="(permission,index) in permissions" :key="index" class="menuItem animated">
-            <router-link :to="permission.uri">
+            <router-link :to="permission.uri.split('app.')[1]">
               <div class="icon" :class="permission.icon"></div>
               <span>{{permission.name}}</span>
             </router-link>
@@ -23,6 +22,7 @@
 
 <script>
 import topHeader from '@/components/topHeader/index'
+import { objectArraySort } from '@/utils/commonfn'
 export default {
   components: {topHeader},
   name: 'dashboard',
@@ -53,7 +53,7 @@ export default {
           }
         })
       }
-      return permissionsFun(permissionsArray, puri)
+      return objectArraySort(permissionsFun(permissionsArray, puri), 'weight', 'up')
     }
   },
   methods: {
@@ -61,7 +61,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$store.state.user.permissions)
   },
   destroyed () {
     // window.removeEventListener('hashchange', this.afterQRScan)
