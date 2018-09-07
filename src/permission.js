@@ -32,7 +32,7 @@ function getGrouproutersByType (routers, type) {
   return modalRouters
 }
 
-const whiteList = ['/login', '/authredirect', '/register']// no redirect whitelist
+const whiteList = ['/login', '/register']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar

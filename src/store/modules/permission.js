@@ -1,15 +1,15 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 
 /**
- * 通过meta.role判断是否与当前用户权限匹配
- * @param roles
+ * 通过用户权限匹配当前前用户路由
+ * @param userPermission
  * @param route
  */
-function hasPermission (roles, route) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.indexOf(role) >= 0)
+function hasPermission (userPermission, route) {
+  if (route) {
+    return userPermission.some(permissionItem => permissionItem.url === route.name)
   } else {
-    return true
+    return false
   }
 }
 
@@ -19,11 +19,11 @@ function hasPermission (roles, route) {
  * @param roles
  * @param asyncRouterMap
  */
-function filterAsyncRouter (asyncRouterMap, roles) {
+function filterAsyncRouter (asyncRouterMap, userPermission) {
   const accessedRouters = asyncRouterMap.routers.filter(route => {
-    if (hasPermission(roles, route)) {
+    if (hasPermission(userPermission, route)) {
       if (route.children && route.children.length) {
-        route.children = filterAsyncRouter(route.children, roles)
+        route.children = filterAsyncRouter(route.children, userPermission)
       }
       return true
     }
@@ -54,13 +54,9 @@ const permission = {
   actions: {
     GenerateRoutes ({ commit }, data) {
       return new Promise(resolve => {
-        const { roles } = data
+        const { userPermission } = data
         let accessedRouters
-        if (roles.indexOf('admin') >= 0) {
-          accessedRouters = asyncRouterMap
-        } else {
-          accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
-        }
+        accessedRouters = filterAsyncRouter(asyncRouterMap, userPermission)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
