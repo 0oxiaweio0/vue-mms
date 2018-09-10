@@ -35,7 +35,7 @@ function filterAsyncRouter (asyncRouterMap, userPermission) {
 const permission = {
   state: {
     routers: constantRouterMap,
-    addRouters: [],
+    addRouters: [], //
     modalType: '', // 当前主模块
     modalRouters: []// 当前主模块可访问路由
   },
