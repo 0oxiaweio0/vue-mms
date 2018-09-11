@@ -3,8 +3,10 @@ const getters = { // 方便store中集中处理
   user: state => state.user.user,
   userOrg: state => state.user.userOrg,
   roles: state => state.user.roles,
-  permissions: state => state.user.permissions,
+  userPermissions: state => state.user.userPermissions,
   watermark: state => state.user.watermark,
+  addRouters: state => state.permission.addRouters,
+  haveConfigRouter: state => state.permission.haveConfigRouter,
   modalRouters: state => state.permission.modalRouters,
   modalType: state => state.permission.modalType
 }

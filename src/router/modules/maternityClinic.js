@@ -15,6 +15,7 @@ const maternityClinicRouterMap = [
   {
     path: '/maternityClinic/workbench',
     component: Layout,
+    name: 'app.maternityClinic.workbench',
     meta: {
       title: 'maternityClinic',
       icon: '&#xe603',
@@ -26,6 +27,7 @@ const maternityClinicRouterMap = [
     path: '/maternityClinic/gravida',
     component: Layout,
     redirect: '/maternityClinic/gravida/archives',
+    name: 'app.maternityClinic.gravida',
     meta: {
       title: 'maternityClinic',
       icon: '&#xe604',

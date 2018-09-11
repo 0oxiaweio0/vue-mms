@@ -35,23 +35,25 @@ export default {
   },
   computed: {
     permissions: function () {
-      let permissionsArray = this.$store.state.user.permissions
+      let permissionsArray = this.$store.state.user.userPermissions
       let puri = null
       let pathName = this.$route.name
       function permissionsFun (menus, puri) {
-        return menus.filter(function (item) {
-          if (pathName === 'app.dashboard') {
-            if (item.puri === '') {
-              return true
+        if (menus) {
+          return menus.filter(function (item) {
+            if (pathName === 'app.dashboard') {
+              if (item.puri === '') {
+                return true
+              }
+            } else {
+              puri = puri || pathName
+              var reg = new RegExp(puri + '\\.[A-Za-z0-9]+$')
+              if (item.uri.indexOf(puri) !== -1 && reg.test(item.uri) && item.type === 1) {
+                return true
+              }
             }
-          } else {
-            puri = puri || pathName
-            var reg = new RegExp(puri + '\\.[A-Za-z0-9]+$')
-            if (item.uri.indexOf(puri) !== -1 && reg.test(item.uri) && item.type === 1) {
-              return true
-            }
-          }
-        })
+          })
+        }
       }
       return objectArraySort(permissionsFun(permissionsArray, puri), 'weight', 'up')
     }
@@ -61,6 +63,14 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('GenerateRoutes', this.$store.state.user.userPermissions).then(() => {
+      if (this.$store.state.permission.addRouters && this.$store.state.permission.haveConfigRouter) {
+        this.$router.addRoutes(this.$store.state.permission.addRouters)
+        console.log('用户动态路由配置成功')
+      }
+    }).catch(function (err) {
+      console.log(err)
+    })
   },
   destroyed () {
     // window.removeEventListener('hashchange', this.afterQRScan)

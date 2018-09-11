@@ -18,7 +18,7 @@ function getGrouproutersByType (routers, type) {
     if (type) {
       if (router.meta) {
         if (router.meta.group && router.meta.group === type) {
-          if (router.children && router.children.length) {
+          if (router.children && router.children.length > 0) {
             router.children = getGrouproutersByType(router.children, type)
           }
           return true
@@ -42,29 +42,14 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      console.log(to)
       if (to.meta.group) { // 跳转模块和当前模块判断,并设置当前模路由
-        console.log(to)
         if (to.meta.group !== store.getters.modalType) {
           store.dispatch('SetModalType', to.meta.group)
-          const modalRuters = getGrouproutersByType(store.getters.permission_routers, to.meta.group)
+          const modalRuters = getGrouproutersByType(store.getters.addRouters, to.meta.group)
           store.dispatch('SetModalRouters', modalRuters)
         }
       }
       if (!store.getters.roles || store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
-        console.log('enter')
-        store.dispatch('GetUserInfo').then(res => { // 拉取user_info
-          const userPermission = res.data.roles // note: roles must be a array! such as: ['editor','develop']
-          store.dispatch('GenerateRoutes', { userPermission }).then(() => { // 根据用户权限生成可访问的路由表
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-          })
-        }).catch((err) => {
-          store.dispatch('FedLogOut').then(() => {
-            console.log(err || 'Verification failed, please login again')
-            next({ path: '/' })
-          })
-        })
       } else {
         // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
         if (hasPermission(store.getters.roles, to.meta.roles)) {

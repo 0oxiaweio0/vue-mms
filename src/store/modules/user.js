@@ -6,11 +6,10 @@ const user = {
     user: null,
     userOrg: null,
     roles: null,
-    permissions: null,
+    userPermissions: null,
     watermark: null,
     token: getToken()
   },
-
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
@@ -25,7 +24,7 @@ const user = {
       state.roles = roles
     },
     SET_PERMISSIONS: (state, permissions) => {
-      state.permissions = permissions
+      state.userPermissions = permissions
     },
     SET_WATERMARK: (state, watermark) => {
       state.watermark = watermark
