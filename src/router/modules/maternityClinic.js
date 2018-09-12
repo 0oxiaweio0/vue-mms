@@ -5,6 +5,7 @@ const maternityClinicRouterMap = [
   {
     path: '/maternityClinic',
     redirect: '/maternityClinic/workbench',
+    component: Layout,
     name: 'app.maternityClinic',
     meta: {
       title: 'maternityClinic',

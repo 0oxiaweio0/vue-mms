@@ -18,3 +18,8 @@ export default {
   }
 }
 </script>
+<style rel="stylesheet/css" scoped>
+  .app-main{
+
+  }
+</style>
