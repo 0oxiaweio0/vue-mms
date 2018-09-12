@@ -7,8 +7,8 @@
           <div class="firstMenu">
             <i :class="[$route.path.indexOf(menuItem.path)!==-1?'write_font':'']" class="iconfont fgl_work_icon" v-html="menuItem.meta.icon"></i><span>{{menuItem.meta.name}}</span>
           </div>
-          <ul :class="{}" class="secondMenu bbt" v-if="menuItem.children&&menuItem.children.length>0">
-            <li :class="[isActive($route.path,childrenItem.path) ? 'selected':'']" v-for="(childrenItem,index) in menuItem.children" :key="index">
+          <ul class="secondMenu bbt" v-if="isAppendChildren(menuItem.children)">
+            <li :class="[isActive($route.path,childrenItem.path) ? 'selected':'']" v-if="!childrenItem.hidden" v-for="(childrenItem,index) in menuItem.children" :key="index">
               <router-link :to="childrenItem.path">
                 {{childrenItem.meta.name}}
               </router-link>
@@ -51,6 +51,19 @@ export default {
       let routerArray = []
       routerArray = router.split('/')
       return routerArray.some(item => item === path)
+    },
+    isAppendChildren: function (children) {
+      let isTrue = false
+      if (children && children.length > 0) {
+        if (children.length === 1) {
+          if (children[0].hidden) isTrue = false
+        } else {
+          isTrue = true
+        }
+      } else {
+        isTrue = false
+      }
+      return isTrue
     }
 
   }

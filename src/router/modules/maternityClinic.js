@@ -15,6 +15,7 @@ const maternityClinicRouterMap = [
   },
   {
     path: '/maternityClinic/workbench',
+    redirect: '/maternityClinic/workbench/index',
     component: Layout,
     name: 'app.maternityClinic.workbench',
     meta: {
@@ -22,7 +23,19 @@ const maternityClinicRouterMap = [
       icon: '&#xe603',
       group: 'maternityClinic',
       name: '工作台'
+    },
+    children: [{
+      path: 'index',
+      component: () => import('@/views/maternityClinic/workbench'),
+      name: 'app.maternityClinic.workbench',
+      meta: {
+        title: 'index',
+        group: 'maternityClinic',
+        name: '工作台首页'
+      },
+      hidden: true
     }
+    ]
   },
   /* 围产管理--孕妇建档 */
   {
