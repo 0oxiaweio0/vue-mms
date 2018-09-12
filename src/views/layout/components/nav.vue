@@ -23,14 +23,14 @@
           <!--         {{secondTitle}}-->
         </div>
         <div class="fgl_headerRight">
-          <span style="width: auto;margin-right: 15px;"><!--{{user.organization.name}}--></span>
+          <span style="width: auto;margin-right: 15px;">{{user.organization.name}}</span>
           <span class="fgl_avatar_imgbox">
                     <img src="../../../assets/hospital_web/avatar.png" alt=""/>
                 </span>
           <div @click="popWindow()" title="" class="fgl_headerRightName" style="cursor: pointer"><!--{{user.name}}--></div>
           <div @click="popWindow()" class="arrow-bottom arrow-bottom-position"></div>
           <div class="fgl_headerLine"></div>
-          <div class="fgl_headerRightExit" @click="logout()"  style="cursor: pointer">注销</div>
+          <div class="fgl_headerRightExit" @click="logoutFn()"  style="cursor: pointer">注销</div>
         </div>
       </div>
     </section>
@@ -39,12 +39,49 @@
 </template>
 
 <script>
+import { logout } from '@/api/common'
+import { removeToken } from '@/utils/auth'
 export default {
   name: 'navMain',
+  data () {
+    return {
+      user: this.$store.state.user.user
+    }
+  },
   components: {},
   computed: {
   },
   methods: {
+    windowMin () {
+    },
+    windowClose () {
+    },
+    windowMax () {
+    },
+    popWindow () {
+    },
+    logoutFn () {
+      logout().then(response => {
+        if (response.data.errorcode === 0) {
+          removeToken()
+          this.$message({
+            message: '退出成功',
+            type: 'success'
+          })
+          this.$router.push({ path: '/login' })
+        } else {
+          this.$message({
+            message: response.data.errormsg,
+            type: 'error'
+          })
+        }
+      }).catch(error => {
+        this.$message({
+          message: error.message,
+          type: 'error'
+        })
+      })
+    }
   }
 }
 </script>

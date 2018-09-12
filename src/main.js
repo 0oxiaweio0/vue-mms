@@ -6,16 +6,16 @@ import router from './router'
 import store from './store'
 
 import './permission' // permission control
-
-import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-
 // import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/js/bootstrap.min'
 
 import './styles/common.css' // global css
+import './styles/Reexamination.css' // global css
+import './styles/app.css' // global css
 
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element, {
   size: 'medium' // set element-ui default size
 })
