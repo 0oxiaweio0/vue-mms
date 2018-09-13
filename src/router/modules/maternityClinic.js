@@ -512,6 +512,286 @@ const maternityClinicRouterMap = [
         group: 'maternityClinic',
         name: '预约失败统计'
       }
+    }, {
+      path: 'highRiskStatistics',
+      component: () => import('@/views/maternityClinic/statisticsManage/highRiskStatistics'),
+      name: 'app.maternityClinic.statisticsManage.highRiskStatistics',
+      meta: {
+        title: 'highRiskStatistics',
+        group: 'maternityClinic',
+        name: '高危统计管理'
+      }
+    }, {
+      path: 'cjystj',
+      component: () => import('@/views/maternityClinic/statisticsManage/cjystj'),
+      name: 'app.maternityClinic.statisticsManage.cjystj',
+      meta: {
+        title: 'cjystj',
+        group: 'maternityClinic',
+        name: '产检医生统计'
+      }
+    }, {
+      path: 'cjcsfbtj',
+      component: () => import('@/views/maternityClinic/statisticsManage/cjcsfbtj'),
+      name: 'app.maternityClinic.statisticsManage.cjcsfbtj',
+      meta: {
+        title: 'cjcsfbtj',
+        group: 'maternityClinic',
+        name: '产检次数分布统计'
+      }
+    }, {
+      path: 'jcrstj',
+      component: () => import('@/views/maternityClinic/statisticsManage/jcrstj'),
+      name: 'app.maternityClinic.statisticsManage.jcrstj',
+      meta: {
+        title: 'cjcsfbtj',
+        group: 'maternityClinic',
+        name: '建册人数统计'
+      }
+    }
+    ]
+  },
+  /* 围产管理--高危统计管理 */
+  {
+    path: '/maternityClinic/statisticsManage',
+    component: Layout,
+    redirect: '/maternityClinic/statisticsManage/checkupStatistics',
+    name: 'app.maternityClinic.statisticsManage',
+    meta: {
+      title: 'statisticsManage',
+      icon: '&#xe619',
+      group: 'maternityClinic',
+      name: '统计管理'
+    },
+    children: [{
+      path: 'checkupStatistics',
+      component: () => import('@/views/maternityClinic/statisticsManage/checkupStatistics'),
+      name: 'app.maternityClinic.statisticsManage.checkupStatistics',
+      meta: {
+        title: 'checkupStatistics',
+        group: 'maternityClinic',
+        name: '产检人数统计'
+      }
+    }, {
+      path: 'dueDateStatistics',
+      component: () => import('@/views/maternityClinic/statisticsManage/dueDateStatistics'),
+      name: 'app.maternityClinic.statisticsManage.dueDateStatistics',
+      meta: {
+        title: 'dueDateStatistics',
+        group: 'maternityClinic',
+        name: '预产期统计管理'
+      }
+    }
+    ]
+  },
+  /* 围产管理--优惠券管理 */
+  {
+    path: '/maternityClinic/coupon',
+    component: Layout,
+    redirect: '/maternityClinic/coupon/index',
+    name: 'app.maternityClinic.coupon',
+    meta: {
+      title: 'coupon',
+      icon: '&#xe60b',
+      group: 'maternityClinic',
+      name: '优惠券管理'
+    },
+    children: [{
+      path: 'index',
+      component: () => import('@/views/maternityClinic/coupon/index'),
+      name: 'app.maternityClinic.coupon',
+      meta: {
+        title: 'coupon',
+        group: 'maternityClinic',
+        name: '优惠券管理'
+      },
+      hidden: true
+    }
+    ]
+  },
+  /* 围产管理--健康管理 */
+  {
+    path: '/maternityClinic/healthyManager',
+    component: Layout,
+    redirect: '/maternityClinic/healthyManager/record',
+    name: 'app.maternityClinic.healthyManager',
+    meta: {
+      title: 'healthyManager',
+      icon: '&#xe609',
+      group: 'maternityClinic',
+      name: '新生儿筛查申请'
+    },
+    children: [{
+      path: 'record',
+      component: () => import('@/views/maternityClinic/healthyManager/record'),
+      name: 'app.maternityClinic.childScreening.childScreeningApply',
+      meta: {
+        title: 'record',
+        group: 'maternityClinic',
+        name: '体重录入'
+      }
+    }, {
+      path: 'lists',
+      component: () => import('@/views/maternityClinic/healthyManager/lists'),
+      name: 'app.maternityClinic.healthyManager.lists',
+      meta: {
+        title: 'lists',
+        group: 'maternityClinic',
+        name: '体重列表'
+      }
+    }, {
+      path: 'bloodSugar',
+      component: () => import('@/views/maternityClinic/healthyManager/bloodSugar'),
+      name: 'app.maternityClinic.healthyManager.bloodSugar',
+      meta: {
+        title: 'bloodSugar',
+        group: 'maternityClinic',
+        name: '血糖管理'
+      }
+    }, {
+      path: 'bloodPressure',
+      component: () => import('@/views/maternityClinic/healthyManager/bloodPressure'),
+      name: 'app.maternityClinic.healthyManager.bloodPressure',
+      meta: {
+        title: 'bloodPressure',
+        group: 'maternityClinic',
+        name: '血压管理'
+      }
+    }, {
+      path: 'temperature',
+      component: () => import('@/views/maternityClinic/healthyManager/temperature'),
+      name: 'app.maternityClinic.healthyManager.temperature',
+      meta: {
+        title: 'temperature',
+        group: 'maternityClinic',
+        name: '体温管理'
+      }
+    }
+    ]
+  },
+  /* 围产管理--服务管理 */
+  {
+    path: '/maternityClinic/serviceManager',
+    component: Layout,
+    redirect: '/maternityClinic/serviceManager/activeService',
+    name: 'app.maternityClinic.serviceManager',
+    meta: {
+      title: 'serviceManager',
+      icon: '&#xe628',
+      group: 'maternityClinic',
+      name: '服务管理'
+    },
+    children: [{
+      path: 'activeService',
+      component: () => import('@/views/maternityClinic/serviceManager/activeService'),
+      name: 'app.maternityClinic.serviceManager.activeService',
+      meta: {
+        title: 'activeService',
+        group: 'maternityClinic',
+        name: '服务开通'
+      }
+    }, {
+      path: 'activeServiceManager',
+      component: () => import('@/views/maternityClinic/serviceManager/activeServiceManager'),
+      name: 'app.maternityClinic.serviceManager.activeServiceManager',
+      meta: {
+        title: 'activeServiceManager',
+        group: 'maternityClinic',
+        name: '服务开通管理'
+      }
+    }, {
+      path: 'activeConfigService',
+      component: () => import('@/views/maternityClinic/serviceManager/activeConfigService'),
+      name: 'app.maternityClinic.serviceManager.activeConfigService',
+      meta: {
+        title: 'activeConfigService',
+        group: 'maternityClinic',
+        name: '医院服务配置'
+      }
+    }, {
+      path: 'configServiceManager',
+      component: () => import('@/views/maternityClinic/serviceManager/configServiceManager'),
+      name: 'app.maternityClinic.healthyManager.configServiceManager',
+      meta: {
+        title: 'configServiceManager',
+        group: 'maternityClinic',
+        name: '医院服务列表管理'
+      }
+    }
+    ]
+  },
+  /* 围产管理--住院管理 */
+  {
+    path: '/maternityClinic/makeHospitalManager',
+    component: Layout,
+    redirect: '/maternityClinic/makeHospitalManager/activeService',
+    name: 'app.maternityClinic.makeHospitalManager',
+    meta: {
+      title: 'activeService',
+      icon: '&#xe625',
+      group: 'maternityClinic',
+      name: '住院管理'
+    },
+    children: [{
+      path: 'activeService',
+      component: () => import('@/views/maternityClinic/makeHospitalManager/activeService'),
+      name: 'app.maternityClinic.makeHospitalManager.activeService',
+      meta: {
+        title: 'activeService',
+        group: 'maternityClinic',
+        name: '住院预约'
+      }
+    }, {
+      path: 'backHospitalServiceManager',
+      component: () => import('@/views/maternityClinic/makeHospitalManager/backHospitalServiceManager'),
+      name: 'app.maternityClinic.makeHospitalManager.backHospitalServiceManager',
+      meta: {
+        title: 'backHospitalServiceManager',
+        group: 'maternityClinic',
+        name: '回院提醒管理'
+      }
+    }, {
+      path: 'inHospitalServiceManager',
+      component: () => import('@/views/maternityClinic/makeHospitalManager/inHospitalServiceManager'),
+      name: 'app.maternityClinic.makeHospitalManager.inHospitalServiceManager',
+      meta: {
+        title: 'inHospitalServiceManager',
+        group: 'maternityClinic',
+        name: '住院提醒管理'
+      }
+    }
+    ]
+  },
+  /* 围产管理--产筛查询 */
+  {
+    path: '/maternityClinic/cscx',
+    component: Layout,
+    redirect: '/maternityClinic/cscx/query',
+    name: 'app.maternityClinic.cscx',
+    meta: {
+      title: 'cscx',
+      icon: '&#xe630',
+      group: 'maternityClinic',
+      name: '产筛查询'
+    },
+    children: [{
+      path: 'query',
+      component: () => import('@/views/maternityClinic/cscx/query'),
+      name: 'app.maternityClinic.cscx.query',
+      meta: {
+        title: 'query',
+        group: 'maternityClinic',
+        name: '查询'
+      }
+    }, {
+      path: 'lists',
+      component: () => import('@/views/maternityClinic/cscx/lists'),
+      name: 'app.maternityClinic.cscx.lists',
+      meta: {
+        title: 'lists',
+        group: 'maternityClinic',
+        name: '孕妇列表'
+      }
     }
     ]
   }
