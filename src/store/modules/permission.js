@@ -23,6 +23,7 @@ function hasPermission (userPermission, route) {
  */
 function filterAsyncRouter (asyncRouterMap, userPermission) {
   const accessedRouters = asyncRouterMap.filter(route => {
+    if (route.path === '*') return true
     if (hasPermission(userPermission, route)) {
       if (route.children && route.children.length > 0) {
         route.children = filterAsyncRouter(route.children, userPermission)
@@ -36,6 +37,7 @@ function filterAsyncRouter (asyncRouterMap, userPermission) {
 
 const permission = {
   state: {
+    constantRouterMap: constantRouterMap,
     routers: constantRouterMap,
     haveConfigRouter: false, // 是否配置动态添加可访问路由
     addRouters: [], // 动态添加可访问路由
@@ -45,6 +47,7 @@ const permission = {
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
+      state.constantRouterMap = constantRouterMap
       state.haveConfigRouter = true
       state.routers = constantRouterMap.concat(routers)
     },

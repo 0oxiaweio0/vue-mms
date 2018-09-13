@@ -16,4 +16,4 @@ export default new Router({
   routes: constantRouterMap
 })
 
-export const asyncRouterMap = [].concat(maternityClinicRouterMap)
+export const asyncRouterMap = [{ path: '*', redirect: '/404', hidden: true }].concat(maternityClinicRouterMap)

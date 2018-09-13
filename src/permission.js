@@ -7,11 +7,6 @@ import { getToken, removeLocalStorage } from '@/utils/auth' // getToken from coo
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
 // permission judge function
-function hasPermission (roles, permissionRoles) {
-  if (roles.indexOf('admin') >= 0) return true // admin permission passed directly
-  if (!permissionRoles) return true
-  return roles.some(role => permissionRoles.indexOf(role) >= 0)
-}
 // 更具当前主模块类型对所有的路由进行过滤
 function getGrouproutersByType (routers, type) {
   const modalRouters = routers.filter(router => {
@@ -49,18 +44,7 @@ router.beforeEach((to, from, next) => {
           store.dispatch('SetModalRouters', modalRuters)
         }
       }
-      if (!store.getters.roles || store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
-      } else {
-        // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
-        if (hasPermission(store.getters.roles, to.meta.roles)) {
-          console.log(1)
-          next()
-        } else {
-          console.log(2)
-          next({path: '/401', replace: true, query: { noGoBack: true }})
-        }
-        // 可删 ↑
-      }
+      next()
     }
   } else {
     // has no token
