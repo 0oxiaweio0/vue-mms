@@ -6,8 +6,8 @@ Vue.use(Router)
 
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true, name: 'app.login' },
-  { path: '/dashboard', component: () => import('@/views/dashboard/index'), hidden: true, name: 'app.dashboard' }
-  // { path: '*', redirect: '/404', hidden: true }
+  { path: '/dashboard', component: () => import('@/views/dashboard/index'), hidden: true, name: 'app.dashboard' },
+  { path: '/404', component: () => import('@/views/errorPage/404'), hidden: true }
 ]
 
 export default new Router({
@@ -16,6 +16,4 @@ export default new Router({
   routes: constantRouterMap
 })
 
-export const asyncRouterMap = [
-  { path: '*', redirect: '/404', hidden: true }
-].concat(maternityClinicRouterMap)
+export const asyncRouterMap = [].concat(maternityClinicRouterMap)
