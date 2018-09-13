@@ -126,7 +126,14 @@ export default {
         params['password'] = this.loginForm.password
         this.$store.dispatch('LoginByUser', params).then(() => {
           this.$store.dispatch('GetUserInfo', params).then(() => {
-            this.$router.push({ path: '/dashboard' })
+            this.$store.dispatch('GenerateRoutes', this.$store.state.user.userPermissions).then(() => {
+              if (this.$store.state.permission.addRouters && this.$store.state.permission.haveConfigRouter) {
+                this.$router.addRoutes(this.$store.state.permission.addRouters)
+                this.$router.push({ path: '/dashboard' })
+              }
+            }).catch(function (err) {
+              console.log(err)
+            })
           }).catch(function (err) {
             this.$message({
               message: err.message,

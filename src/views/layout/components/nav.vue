@@ -40,7 +40,7 @@
 
 <script>
 import { logout } from '@/api/common'
-import { removeToken } from '@/utils/auth'
+import { removeToken, removeLocalStorage } from '@/utils/auth'
 export default {
   name: 'navMain',
   data () {
@@ -64,6 +64,7 @@ export default {
       logout().then(response => {
         if (response.data.errorcode === 0) {
           removeToken()
+          removeLocalStorage()
           this.$message({
             message: '退出成功',
             type: 'success'

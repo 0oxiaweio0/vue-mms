@@ -2,6 +2,12 @@ import Cookies from 'js-cookie'
 
 // Token相关函数
 const TokenKey = 'userToken'
+// localStorage的删除
+const storage = window.localStorage
+
+export function removeLocalStorage () {
+  storage.clear()
+}
 
 export function getToken () {
   return Cookies.get(TokenKey)

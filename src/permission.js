@@ -2,7 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
-import { getToken } from '@/utils/auth' // getToken from cookie
+import { getToken, removeLocalStorage } from '@/utils/auth' // getToken from cookie
 
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
@@ -62,6 +62,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     // has no token
+    removeLocalStorage() // 没有登录时清除本地LocalStorage数据
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {

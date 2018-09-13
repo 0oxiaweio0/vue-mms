@@ -65,6 +65,9 @@ const permission = {
         resolve()
       })
     },
+    SetRouters ({ commit }, data) {
+      commit('SET_ROUTERS', data)
+    },
     SetModalType ({ commit }, data) {
       if (data) {
         commit('SET_MODAL_TYPE', data)

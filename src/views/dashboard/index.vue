@@ -63,14 +63,6 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('GenerateRoutes', this.$store.state.user.userPermissions).then(() => {
-      if (this.$store.state.permission.addRouters && this.$store.state.permission.haveConfigRouter) {
-        this.$router.addRoutes(this.$store.state.permission.addRouters)
-        console.log('用户动态路由配置成功')
-      }
-    }).catch(function (err) {
-      console.log(err)
-    })
   },
   destroyed () {
     // window.removeEventListener('hashchange', this.afterQRScan)
