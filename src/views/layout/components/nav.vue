@@ -1,5 +1,5 @@
 <template>
-  <div class="fgl_bigCon" >
+  <div class="top-nav">
     <div class="fgl_block_tips">
       <span class="fgl_logo_title"><i class="iconfont">&#xe612;</i>孕产婴智慧医疗平台</span>
       <ul class="fgl_operate_btn">

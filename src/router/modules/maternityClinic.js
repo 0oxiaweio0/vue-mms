@@ -120,6 +120,48 @@ const maternityClinicRouterMap = [
       }
     }
     ]
+  },
+  /* 围产管理--产妇分娩 */
+  {
+    path: '/maternityClinic/maternal',
+    component: Layout,
+    redirect: '/maternityClinic/maternal/childbirth',
+    name: 'app.maternityClinic.maternal',
+    meta: {
+      title: 'maternal',
+      icon: '&#xe606',
+      group: 'maternityClinic',
+      name: '产妇分娩'
+    },
+    children: [{
+      path: 'childbirth',
+      component: () => import('@/views/maternityClinic/maternal/childbirth'),
+      name: 'app.maternityClinic.maternal.childbirth',
+      meta: {
+        title: 'childbirth',
+        group: 'maternityClinic',
+        name: '分娩'
+      }
+    }, {
+      path: 'childbirthManage',
+      component: () => import('@/views/maternityClinic/maternal/childbirthManage'),
+      name: 'app.maternityClinic.maternal.childbirthManage',
+      meta: {
+        title: 'childbirthManage',
+        group: 'maternityClinic',
+        name: '分娩管理'
+      }
+    }, {
+      path: 'neonateManage',
+      component: () => import('@/views/maternityClinic/maternal/neonateManage'),
+      name: 'app.maternityClinic.maternal.neonateManage',
+      meta: {
+        title: 'neonateManage',
+        group: 'maternityClinic',
+        name: '新生儿管理'
+      }
+    }
+    ]
   }
 ]
 

@@ -1,10 +1,11 @@
 <template>
   <section class="app-main" style="min-height: 100%">
-    <transition name="fade-transform" mode="out-in">
+<!--    <transition name="fade-transform" mode="out-in">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    </transition>
+    </transition>-->
+    <router-view></router-view>
   </section>
 </template>
 

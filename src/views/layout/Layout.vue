@@ -1,5 +1,5 @@
 <template>
-  <div class="fgl_bigCon" >
+  <div class="fgl_bigCon">
     <!--header-->
     <nav-main></nav-main>
     <!--leftBar-->

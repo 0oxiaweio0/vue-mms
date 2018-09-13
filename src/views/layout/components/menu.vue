@@ -73,6 +73,7 @@ export default {
 <style rel="stylesheet/css" scoped>
   .fgl_max_block li a{
     display: block;
+    color:#6F7C8A;
   }
   .router-link-active{
     background: #59b0f1;
@@ -96,4 +97,5 @@ export default {
   .secondMenu li a:hover{
     color: #efdd32!important;
   }
+
 </style>
