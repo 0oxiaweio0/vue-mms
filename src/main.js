@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/js/bootstrap.min'
 
 import './styles/common.css' // global css
+import './styles/lymsCssFrame.css' // global css
 import './styles/Reexamination.css' // global css
 import './styles/app.css' // global css
 

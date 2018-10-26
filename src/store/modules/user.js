@@ -7,6 +7,7 @@ const user = {
     userOrg: null,
     roles: null,
     userPermissions: null,
+    permissionActionStr: null,
     watermark: null,
     token: getToken()
   },
@@ -25,6 +26,12 @@ const user = {
     },
     SET_PERMISSIONS: (state, permissions) => {
       state.userPermissions = permissions
+      if (permissions) {
+        state.permissionActionStr = ','
+        permissions.forEach(function (item) {
+          state.permissionActionStr += item.uri + ','
+        })
+      }
     },
     SET_WATERMARK: (state, watermark) => {
       state.watermark = watermark

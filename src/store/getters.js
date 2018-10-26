@@ -4,6 +4,7 @@ const getters = { // 方便store中集中处理
   userOrg: state => state.user.userOrg,
   roles: state => state.user.roles,
   userPermissions: state => state.user.userPermissions,
+  permissionActionStr: state => state.user.permissionActionStr,
   watermark: state => state.user.watermark,
   constantRouterMap: state => state.permission.constantRouterMap,
   routers: state => state.permission.routers,

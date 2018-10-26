@@ -31,3 +31,10 @@ export function logout () {
     method: 'GET'
   })
 }
+export function queryAreas (param) {
+  return request({
+    url: '/queryRegions',
+    method: 'GET',
+    params: param
+  })
+}
