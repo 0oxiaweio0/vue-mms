@@ -61,16 +61,19 @@ export default {
     provinceId: function (newV, oldV) {
       if (newV !== oldV) {
         this.addressFilter('citys', newV)
+        this.clearOtherAreas('province')
       }
     },
     cityId: function (newV, oldV) {
       if (newV !== oldV) {
         this.addressFilter('areas', newV)
+        this.clearOtherAreas('city')
       }
     },
     areaId: function (newV, oldV) {
       if (newV !== oldV) {
         this.addressFilter('streets', newV)
+        this.clearOtherAreas('area')
       }
     }
   },
@@ -89,6 +92,25 @@ export default {
           })
         }
       })
+    },
+    clearOtherAreas (type) {
+      switch (type) {
+        case 'province':
+          this.cityId = null
+          this.areaId = null
+          this.streetId = null
+          this.areas = null
+          this.streets = null
+          break
+        case 'city':
+          this.areaId = null
+          this.streetId = null
+          this.streets = null
+          break
+        case 'area':
+          this.streetId = null
+          break
+      }
     }
   },
   beforeCreate () {
